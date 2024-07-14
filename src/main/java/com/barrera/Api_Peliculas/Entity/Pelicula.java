@@ -18,8 +18,13 @@ public class Pelicula {
     @Column(name = "id_pelicula")
     private Long id;
 
+    @Column(name = "nombre_pelicula")
     private String nombre;
 
     private String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name = "id_director", nullable = false)
+    private Director director;
 
 }
