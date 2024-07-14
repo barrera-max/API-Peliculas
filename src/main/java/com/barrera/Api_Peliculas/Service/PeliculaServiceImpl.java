@@ -2,10 +2,10 @@ package com.barrera.Api_Peliculas.Service;
 
 import com.barrera.Api_Peliculas.Entity.Pelicula;
 import com.barrera.Api_Peliculas.Repositories.PeliculaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PeliculaServiceImpl implements PeliculaService {
@@ -13,35 +13,31 @@ public class PeliculaServiceImpl implements PeliculaService {
 
     private PeliculaRepository peliculaRepository;
 
-    public PeliculaServiceImpl(PeliculaRepository peliculaRepository){
+    public PeliculaServiceImpl(PeliculaRepository peliculaRepository) {
         this.peliculaRepository = peliculaRepository;
     }
 
     @Override
     public Pelicula add(Pelicula entity) {
-        Pelicula pelicula = this.peliculaRepository.save(entity);
-        return pelicula;
+        return this.peliculaRepository.save(entity);
     }
 
     @Override
     public Pelicula update(Pelicula entity) {
-        Pelicula pelicula = this.peliculaRepository.save(entity);
-        return pelicula;
+        return this.peliculaRepository.save(entity);
     }
 
     @Override
     public Pelicula delete(Long id) {
-        Pelicula pelicula = this.getById(id);
-        if (pelicula != null) {
-            this.peliculaRepository.delete(pelicula);
-        }
-        return pelicula;
+        return this.peliculaRepository.findById(id).map(pelicula -> {
+            peliculaRepository.delete(pelicula);
+            return pelicula;
+        }).orElseThrow();
     }
 
     @Override
     public Pelicula getById(Long id) {
-        return this.peliculaRepository.findById(id).orElse(null);
-
+        return this.peliculaRepository.findById(id).orElseThrow();
     }
 
     @Override
