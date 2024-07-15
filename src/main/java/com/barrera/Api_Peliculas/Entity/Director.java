@@ -31,6 +31,6 @@ public class Director {
 
     //director es la referencia en la clase pelicula, o sea apunta al atributo de esa clase
     @OneToMany(mappedBy = "director", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
+    @JsonIgnore //para que no se mappee en la consulta
     private List<Pelicula> peliculas;
 }

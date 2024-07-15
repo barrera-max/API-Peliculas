@@ -11,7 +11,7 @@ import java.util.Optional;
 public class PeliculaServiceImpl implements PeliculaService {
     //a traves de repositorio accedo a la BD para realizar las operaciones
 
-    private PeliculaRepository peliculaRepository;
+    private final PeliculaRepository peliculaRepository;
 
     public PeliculaServiceImpl(PeliculaRepository peliculaRepository) {
         this.peliculaRepository = peliculaRepository;
