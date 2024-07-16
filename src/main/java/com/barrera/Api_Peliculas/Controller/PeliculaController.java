@@ -1,5 +1,6 @@
 package com.barrera.Api_Peliculas.Controller;
 
+import com.barrera.Api_Peliculas.DTOs.PeliculaDTO;
 import com.barrera.Api_Peliculas.Entity.Pelicula;
 import com.barrera.Api_Peliculas.Service.PeliculaServiceImpl;
 import org.springframework.http.HttpStatus;
@@ -21,9 +22,9 @@ public class PeliculaController {
 
     //si lo uso con un frontend deberia retornar un JSON para manejarlo
     @GetMapping
-    public ResponseEntity<List<Pelicula>> getAll() {
+    public ResponseEntity<List<PeliculaDTO>> getAll() {
         try {
-            List<Pelicula> values = this.peliculaService.getAll();
+            List<PeliculaDTO> values = this.peliculaService.getAll();
             return ResponseEntity.ok(values);
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
@@ -33,34 +34,40 @@ public class PeliculaController {
 
     @PostMapping
     @RequestMapping("/new")
-    public ResponseEntity<Pelicula> add(@RequestBody Pelicula pelicula) {
+    public ResponseEntity<PeliculaDTO> add(@RequestBody PeliculaDTO pelicula) {
         try {
-            Pelicula value = this.peliculaService.add(pelicula);
+            PeliculaDTO value = this.peliculaService.add(pelicula);
             return ResponseEntity.status(HttpStatus.CREATED).body(value);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+
+
     }
 
     @GetMapping
     @RequestMapping("/{id}")
     public ResponseEntity<Pelicula> getOne(@PathVariable Long id) {
+/*
         try {
             Pelicula value = this.peliculaService.getById(id);
             return ResponseEntity.ok().body(value);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
+*/      return null;
     }
 
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Pelicula> delOne(@PathVariable Long id) {
+/*
         try {
             Pelicula value = this.peliculaService.delete(id);
             return ResponseEntity.status(HttpStatus.OK).body(value);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
+*/      return null;
     }
 }
